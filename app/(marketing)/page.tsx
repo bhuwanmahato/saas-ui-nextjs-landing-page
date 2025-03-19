@@ -1,31 +1,34 @@
 'use client'
 
 import { Box, Container, Stack } from '@chakra-ui/react'
-import { Br, Link } from '@saas-ui/react'
+import { Br } from '@saas-ui/react'
 import type { Metadata, NextPage } from 'next'
+// import { babelIncludeRegexes } from 'next/dist/build/webpack-config'
 import Image from 'next/image'
 
 import * as React from 'react'
 
-import { ButtonLink } from '#components/button-link/button-link'
-import { Faq } from '#components/faq'
-import { Features } from '#components/features'
+// import { ButtonLink } from '#components/button-link/button-link'
+// import { GoldButton } from '#components/coming-soon-button'
+// import { Faq } from '#components/faq'
+// import { Features } from '#components/features'
 import { BackgroundGradient } from '#components/gradients/background-gradient'
 import { Hero } from '#components/hero'
-import {
-  Highlights,
-  HighlightsItem,
-  HighlightsTestimonialItem,
-} from '#components/highlights'
-import { ChakraLogo, NextjsLogo } from '#components/logos'
+// import {
+//   Highlights,
+//   HighlightsItem,
+//   HighlightsTestimonialItem,
+// } from '#components/highlights'
+// import { ChakraLogo, NextjsLogo } from '#components/logos'
 import { FallInPlace } from '#components/motion/fall-in-place'
-import { Pricing } from '#components/pricing/pricing'
-import { Testimonial, Testimonials } from '#components/testimonials'
+// import { Pricing } from '#components/pricing/pricing'
+// import { Testimonial, Testimonials } from '#components/testimonials'
 import { Em } from '#components/typography'
 import { WaitlistForm } from '#components/waitlist-form'
-import faq from '#data/faq'
-import pricing from '#data/pricing'
-import testimonials from '#data/testimonials'
+
+// import faq from '#data/faq'
+// import pricing from '#data/pricing'
+// import testimonials from '#data/testimonials'
 
 export const meta: Metadata = {
   title: 'Saas UI Landingspage',
@@ -62,36 +65,46 @@ const HeroSection: React.FC = () => {
         justifyContent="center"
         px={{ base: 4, lg: 6 }}
       >
-        <Stack direction={{ base: 'column', lg: 'row' }} alignItems="center">
-          <Hero
-            id="home"
-            justifyContent="flex-start"
-            px="0"
-            title={
-              <FallInPlace fontSize={'36px'} fontWeight="bold">
-                All Your Digital Resources
-                <Br />
-                in One Place
-              </FallInPlace>
-            }
-            description={
-              <FallInPlace delay={0.4} fontSize={'16px'}>
-                Tired of scattered{' '}
-                <Em>links, posts, notes, files and bookmarks?</Em>
-                <Br />
-                Zenboxx keeps all your digital resources organized and
-                accessible
-                <Br />
-                so you can <Em>focus on learning, not searching.</Em>
-              </FallInPlace>
-            }
-          >
-            {/* <FallInPlace delay={0.8}> */}
-            {/* <HStack pt="4" pb="12" spacing="8">
+        <Stack
+          direction={{ base: 'column', lg: 'row' }}
+          alignItems="center"
+          pt={{ base: '12', lg: '0' }}
+        >
+          <Stack direction={{ base: 'column', lg: 'column' }}>
+            {/* <GoldButton /> */}
+            <Hero
+              id="home"
+              justifyContent="flex-start"
+              px="0"
+              title={
+                <FallInPlace
+                  fontSize={{ base: '24px', lg: '36px' }}
+                  fontWeight="bold"
+                >
+                  All Your Digital Resources
+                  <Br />
+                  in One Place
+                </FallInPlace>
+              }
+              description={
+                <FallInPlace
+                  delay={0.4}
+                  fontSize={{ base: '12px', lg: '16px' }}
+                >
+                  Tired of scattered{' '}
+                  <Em>links, posts, notes, files and bookmarks?</Em>
+                  <Br />
+                  Now keep all your digital resources organized and accessible
+                  so you can <Em>focus on learning, not searching.</Em>
+                </FallInPlace>
+              }
+            >
+              {/* <FallInPlace delay={0.8}> */}
+              {/* <HStack pt="4" pb="12" spacing="8">
                 <NextjsLogo height="28px" /> <ChakraLogo height="20px" />
               </HStack> */}
 
-            {/* <ButtonGroup spacing={4} alignItems="center">
+              {/* <ButtonGroup spacing={4} alignItems="center">
                 <ButtonLink colorScheme="primary" size="lg" href="/signup">
                   Sign Up
                 </ButtonLink>
@@ -115,25 +128,24 @@ const HeroSection: React.FC = () => {
                   View demo
                 </ButtonLink>
               </ButtonGroup> */}
-            {/* </FallInPlace> */}
-            <FallInPlace delay={0.8} paddingTop={'40px'}>
-              <Box maxW="400px">
-                <WaitlistForm />
-              </Box>
-            </FallInPlace>
-            <FallInPlace
-              delay={0.4}
-              fontSize={'14px'}
-              paddingTop={'40px'}
-              color="gray.500"
-            >
-              Join the waitlist to get early access to Zenboxx.
-              <Br />
-              We’re really honest guys and promise not to send you ads. We will
-              <Br />
-              write only once when our platform is ready.
-            </FallInPlace>
-          </Hero>
+              {/* </FallInPlace> */}
+              <FallInPlace delay={0.8} paddingTop={'40px'}>
+                <Box maxW="400px">
+                  <WaitlistForm />
+                </Box>
+              </FallInPlace>
+              <FallInPlace
+                delay={0.4}
+                fontSize={{ base: '10px', lg: '16px' }}
+                paddingTop={{ base: '20px', lg: '40px' }}
+                color="gray.500"
+              >
+                Join the waitlist to get early access to Zenboxx. We promise not
+                to send you ads. We will write only once when our platform is
+                ready.
+              </FallInPlace>
+            </Hero>
+          </Stack>
           <Box
             height="600px"
             position="absolute"

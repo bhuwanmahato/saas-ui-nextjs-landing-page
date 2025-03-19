@@ -1,8 +1,11 @@
 'use client'
 
-import { Box, Button, Input, Text, VStack, useToast } from '@chakra-ui/react'
+import { Box, Button, Input, Stack, useToast } from '@chakra-ui/react'
+import confetti from 'canvas-confetti'
 
 import { useState } from 'react'
+
+import { supabase } from '../lib/supabase'
 
 export const WaitlistForm = () => {
   const [email, setEmail] = useState('')
@@ -14,30 +17,28 @@ export const WaitlistForm = () => {
     setLoading(true)
 
     try {
-      const response = await fetch('/api/waitlist', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email,
-        }),
-      })
+      const { error } = await supabase.from('waitlist').insert([{ email }])
 
-      const data = await response.json()
-
-      if (response.ok) {
-        toast({
-          title: 'Success!',
-          description: 'You have been added to the waitlist.',
-          status: 'success',
-          duration: 5000,
-          isClosable: true,
-        })
-        setEmail('')
-      } else {
-        throw new Error(data.error || 'Failed to join waitlist')
+      if (error) {
+        if (error.code === '23505') {
+          throw new Error('Ops! You are already a member.')
+        }
+        throw error
       }
+
+      toast({
+        title: 'Success!',
+        description: 'Congratulations! You become a Beta User.',
+        status: 'success',
+        duration: 5000,
+        isClosable: true,
+      })
+      confetti({
+        particleCount: 500,
+        spread: 70,
+        origin: { y: 0.6 },
+      })
+      setEmail('')
     } catch (error: any) {
       toast({
         title: 'Error',
@@ -54,27 +55,32 @@ export const WaitlistForm = () => {
 
   return (
     <Box as="form" onSubmit={handleSubmit}>
-      <VStack spacing={4}>
+      <Stack
+        spacing={4}
+        direction={{ base: 'row', md: 'column' }}
+        align={'center'}
+      >
         <Input
           type="email"
           placeholder="Enter your email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          size="lg"
+          size={{ base: 'md', md: 'lg' }} // responsive size
           required
           bg="white"
           _dark={{ bg: 'gray.800' }}
+          width={{ base: 'auto', md: 'full' }} // responsive width
         />
         <Button
           type="submit"
           colorScheme="primary"
-          size="lg"
-          width="full"
+          size={{ base: 'md', md: 'lg' }} // responsive size
+          width={{ base: 'auto', md: 'full' }} // responsive width
           isLoading={loading}
         >
           Join the Waitlist
         </Button>
-      </VStack>
+      </Stack>
     </Box>
   )
 }
