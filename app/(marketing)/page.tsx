@@ -2,7 +2,7 @@
 
 import { Box, Container, Stack } from '@chakra-ui/react'
 import { Br } from '@saas-ui/react'
-import type { Metadata, NextPage } from 'next'
+import type { NextPage } from 'next'
 // import { babelIncludeRegexes } from 'next/dist/build/webpack-config'
 import Image from 'next/image'
 
@@ -30,10 +30,10 @@ import { WaitlistForm } from '#components/waitlist-form'
 // import pricing from '#data/pricing'
 // import testimonials from '#data/testimonials'
 
-export const meta: Metadata = {
-  title: 'Saas UI Landingspage',
-  description: 'Free SaaS landingspage starter kit',
-}
+// export const metadata: Metadata = {
+//   title: 'All your resources in one place | Zenboxx',
+//   // description: 'Free SaaS landingspage starter kit',
+// }
 
 const Home: NextPage = () => {
   return (

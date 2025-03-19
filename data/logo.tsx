@@ -129,7 +129,7 @@ export const Logo: React.FC<HTMLChakraProps<'svg'>> = () => {
           fill="#6590FF"
         />
       </svg>
-      <title>ZenboxX</title>
+      <title>All your resources in one place | ZenboxX</title>
     </Stack>
   )
 }
